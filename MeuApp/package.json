@@ -1,5 +1,5 @@
 {
-  "name": "com.exemplo.meuapp",
+  "name": "com.seuprojeto.meuapp",
   "displayName": "MeuApp",
   "version": "1.0.0",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
@@ -14,18 +14,12 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-android": "^14.0.0",
-    "cordova-browser": "^7.0.0",
-    "cordova-plugin-inappbrowser": "^6.0.0",
-    "cordova-sqlite-storage": "^7.0.0"
+    "cordova-browser": "^7.0.0"
   },
   "cordova": {
     "platforms": [
-      "android",
-      "browser"
-    ],
-    "plugins": {
-      "cordova-plugin-inappbrowser": {},
-      "cordova-sqlite-storage": {}
-    }
+      "browser",
+      "android"
+    ]
   }
 }
