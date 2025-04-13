@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, width=device-width">
+  <title>Gerenciador de Tarefas</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <div class="app">
+    <h2>Cadastro de Tarefas</h2>
+    
+    <input id="titulo" placeholder="Título da Tarefa"><br>
+    <textarea id="descricao" placeholder="Descrição"></textarea><br>
+    <button onclick="salvarTarefa()">Salvar</button>
+
+    <h3>Tarefas Salvas</h3>
+        <table border="1" width="100%">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="listaTarefas"></tbody>
+        </table>
+
+  </div>
+
+  <script src="cordova.js"></script>
+  <script src="js/tarefas.js"></script>
+</body>
+</html>
