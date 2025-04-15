@@ -114,3 +114,65 @@ body {
   body.dark-mode button.clear:hover {
     background-color: #922d2d;
   }
+
+
+ /* ===== ESTILOS DO NAVEGADOR ===== */
+.navegador-container {
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px 20px;
+  width: 320px;
+  max-width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.barra-pesquisa {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+#urlInput {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.botoes {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+#webFrame {
+  width: 100%;
+  height: 60vh;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: white;
+}
+
+/* Tema escuro */
+body.dark-mode .navegador-container {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode #urlInput {
+  background-color: #121212;
+  color: #fff;
+  border-color: #444;
+}
+
+body.dark-mode #webFrame {
+  background-color: #121212;
+  border-color: #444;
+}
