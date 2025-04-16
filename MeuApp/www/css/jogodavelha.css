@@ -129,17 +129,19 @@ select:hover {
     background: #e65c00; /* Hover do botão de reinício */
 }
 
-/* Botão de alternância de tema - posicionamento ajustado */
+/* Botão de alternância de tema - ajustando o posicionamento */
 .theme-toggle {
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
-    position: absolute;
+    position: fixed; /* Mudança de absolute para fixed */
     top: 20px;
     right: 20px;
     color: #333; /* Cor do ícone no modo claro */
+    z-index: 10; /* Para garantir que fique sobre outros elementos */
 }
+
 
 /* Tema escuro */
 body.dark-mode {
