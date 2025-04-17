@@ -16,5 +16,5 @@ function abrirSite() {
 }
 
 function voltar() {
-    window.location.href = "../index.html"; // Ajuste conforme sua estrutura
+    window.location.href = "index.html"; // Ajustado conforme sua estrutura
 }

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Navegador</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; media-src *">
     <link rel="stylesheet" href="css/index.css"> 
 </head>
 <body>
@@ -14,12 +15,13 @@
         <div class="barra-pesquisa">
             <input type="text" id="urlInput" placeholder="Digite a URL (ex: google.com)">
             <div class="botoes">
-                <button onclick="abrirSite()">Ir</button>
-                <button onclick="voltar()">Voltar</button>
+                <button class="btn" onclick="abrirSite()">Ir</button>
+                <button class="btn" onclick="voltar()">Voltar</button>
             </div>
         </div>
         
-        <iframe id="webFrame" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+        <!-- Removido sandbox -->
+        <iframe id="webFrame" style="width:100%; height:400px; border:1px solid #ccc;"></iframe>
     </div>
 
     <script src="js/navegador.js"></script>
