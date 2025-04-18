@@ -9,13 +9,11 @@ const statusText = document.getElementById("status");
 const restartButton = document.getElementById("restart");
 const difficultySelect = document.getElementById("difficulty");
 const gameModeSelect = document.getElementById("gameMode");
-const toggleButton = document.getElementById("themeToggle");
 
 window.onload = function() {
     mode = gameModeSelect.value;
     updateDifficultyState();
     createBoard();
-    updateThemeIcon();
 };
 
 function updateDifficultyState() {
@@ -82,7 +80,7 @@ function checkWinner() {
     for (let combination of winningCombinations) {
         const [a, b, c] = combination;
         if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
-            return cells[a];
+            return cells[a]; // Retorna "X" ou "O"
         }
     }
 
@@ -126,6 +124,7 @@ function hardBot() {
             }
         }
     }
+
     return bestMove;
 }
 
@@ -171,19 +170,6 @@ function restartGame() {
     createBoard();
 }
 
-function toggleTheme() {
-    document.body.classList.toggle("dark-mode");
-    updateThemeIcon();
-}
-
-function updateThemeIcon() {
-    if (document.body.classList.contains("dark-mode")) {
-        toggleButton.textContent = "🌞";
-    } else {
-        toggleButton.textContent = "🌙";
-    }
-}
-
 restartButton.addEventListener("click", restartGame);
 gameModeSelect.addEventListener("change", () => {
     mode = gameModeSelect.value;
@@ -193,4 +179,3 @@ gameModeSelect.addEventListener("change", () => {
 difficultySelect.addEventListener("change", () => {
     difficulty = parseInt(difficultySelect.value);
 });
-toggleButton.addEventListener("click", toggleTheme);

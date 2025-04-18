@@ -1,40 +1,27 @@
-/* Estilos gerais para o body */
 body {
-    -webkit-touch-callout: none;
-    -webkit-text-size-adjust: none;
-    -webkit-user-select: none;
-    background-color: #ffffff; /* Cor de fundo no modo claro */
-    color: #333; /* Cor do texto no modo claro */
     font-family: 'Arial', sans-serif;
-    font-size: 14px;
-    height: 100vh;
+    text-align: center;
+    background-color: #121212;
+    color: #ffffff;
     margin: 0;
-    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px)
-      env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    padding: 20px;
 }
 
-/* Container centralizado */
 .container {
     max-width: 400px;
     margin: 0 auto;
-    background: #f9f9f9; /* Fundo do container no modo claro */
+    background: #1e1e1e;
     padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Títulos */
 h1 {
     font-size: 24px;
-    color: #333;
+    color: #ffffff;
     margin-bottom: 15px;
 }
 
-/* Estilo para o select */
 .select-container {
     margin-bottom: 15px;
 }
@@ -49,18 +36,17 @@ select {
     padding: 8px;
     font-size: 14px;
     border-radius: 6px;
-    border: 1px solid #ccc; /* Borda no modo claro */
-    background-color: #ffffff;
-    color: #333;
+    border: 1px solid #444;
+    background-color: #222;
+    color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 select:hover {
-    border-color: #ff6600; /* Borda no hover */
+    border-color: #00bcd4;
 }
 
-/* Tabuleiro */
 #board {
     display: grid;
     grid-template-columns: repeat(3, 100px);
@@ -68,17 +54,16 @@ select:hover {
     gap: 8px;
     justify-content: center;
     margin: 20px auto;
-    background: #f9f9f9; /* Fundo do tabuleiro no modo claro */
+    background: #121212;
     padding: 10px;
     border-radius: 10px;
 }
 
-/* Células do tabuleiro */
 .cell {
     width: 100px;
     height: 100px;
-    background: #ff6600; /* Cor de fundo das células no modo claro */
-    border: 2px solid #ff6600; /* Borda das células */
+    background: #2e7d32;
+    border: 2px solid #1b5e20;
     font-size: 36px;
     font-weight: bold;
     color: #ffffff;
@@ -90,10 +75,9 @@ select:hover {
 }
 
 .cell:hover {
-    background: #e65c00; /* Hover nas células */
+    background: #388e3c;
 }
 
-/* Animação */
 .animated {
     animation: fadeIn 0.3s ease-in-out;
 }
@@ -103,20 +87,18 @@ select:hover {
     to { opacity: 1; transform: scale(1); }
 }
 
-/* Status do jogo */
 #status {
     font-size: 18px;
     font-weight: bold;
     margin-top: 10px;
-    color: #333;
+    color: #ffffff;
 }
 
-/* Botão de reinício */
 #restart {
     margin-top: 15px;
     padding: 12px 20px;
     font-size: 16px;
-    background: #ff6600; /* Cor do botão de reinício */
+    background: #00bcd4;
     color: white;
     border: none;
     border-radius: 6px;
@@ -126,67 +108,15 @@ select:hover {
 }
 
 #restart:hover {
-    background: #e65c00; /* Hover do botão de reinício */
+    background: #0097a7;
 }
 
-/* Botão de alternância de tema - ajustando o posicionamento */
-.theme-toggle {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    position: fixed; /* Mudança de absolute para fixed */
-    top: 20px;
-    right: 20px;
-    color: #333; /* Cor do ícone no modo claro */
-    z-index: 10; /* Para garantir que fique sobre outros elementos */
-}
-
-
-/* Tema escuro */
-body.dark-mode {
-    background-image: linear-gradient(to bottom, #2c2c2c, #121212); /* Gradiente escuro */
-    color: #fff; /* Texto claro no modo escuro */
-}
-
-body.dark-mode .container {
-    background: #1e1e1e; /* Fundo do container no modo escuro */
-}
-
-body.dark-mode select {
-    background-color: #222; /* Fundo do select no modo escuro */
-    color: #fff; /* Cor do texto no select */
-    border-color: #444; /* Borda do select */
-}
-
-body.dark-mode #board {
-    background: #333333; /* Fundo do tabuleiro no modo escuro */
-}
-
-body.dark-mode .cell {
-    background: #ff6600; /* Fundo das células no modo escuro */
-    border: 2px solid #ff6600; /* Borda das células no modo escuro */
-}
-
-body.dark-mode #status {
-    color: #fff; /* Cor do status no modo escuro */
-}
-
-body.dark-mode #restart {
-    background: #ff6600; /* Cor do botão de reinício no modo escuro */
-}
-
-body.dark-mode #restart:hover {
-    background: #e65c00; /* Hover do botão de reinício no modo escuro */
-}
-
-/* Responsividade */
 @media (max-width: 500px) {
     #board {
         grid-template-columns: repeat(3, 80px);
         grid-template-rows: repeat(3, 80px);
     }
-
+    
     .cell {
         width: 80px;
         height: 80px;
