@@ -114,3 +114,27 @@ body {
   body.dark-mode button.clear:hover {
     background-color: #922d2d;
   }
+  .back-button {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .back-button:hover {
+    background-color: #0062cc;
+  }
+  
+  body.dark-mode .back-button {
+    background-color: #0056b3;
+  }
+  
+  body.dark-mode .back-button:hover {
+    background-color: #004494;
+  }
+  
