@@ -2,8 +2,10 @@ let db;
 let editandoId = null;
 
 document.addEventListener('deviceready', () => {
+  // Abre o banco de dados SQLite
   db = window.sqlitePlugin.openDatabase({ name: 'tarefas.db', location: 'default' });
 
+  // Cria a tabela 'tarefas' caso não exista
   db.transaction(tx => {
     tx.executeSql('CREATE TABLE IF NOT EXISTS tarefas (id INTEGER PRIMARY KEY AUTOINCREMENT, titulo TEXT, descricao TEXT)');
   }, erro => {
@@ -13,15 +15,18 @@ document.addEventListener('deviceready', () => {
   });
 });
 
+// Função para salvar a tarefa
 function salvarTarefa() {
   const titulo = document.getElementById('titulo').value.trim();
   const descricao = document.getElementById('descricao').value.trim();
 
+  // Validações de título
   if (!titulo) {
     alert("Informe o título da tarefa.");
     return;
   }
 
+  // Verifica se está editando ou criando uma nova tarefa
   if (editandoId) {
     db.transaction(tx => {
       tx.executeSql('UPDATE tarefas SET titulo = ?, descricao = ? WHERE id = ?', [titulo, descricao, editandoId], () => {
@@ -39,6 +44,7 @@ function salvarTarefa() {
   }
 }
 
+// Função para listar todas as tarefas
 function listarTarefas() {
   db.transaction(tx => {
     tx.executeSql('SELECT * FROM tarefas', [], (tx, res) => {
@@ -63,12 +69,14 @@ function listarTarefas() {
   });
 }
 
+// Função para editar a tarefa
 function editarTarefa(id, titulo, descricao) {
   document.getElementById('titulo').value = titulo;
   document.getElementById('descricao').value = descricao;
   editandoId = id;
 }
 
+// Função para excluir a tarefa
 function excluirTarefa(id) {
   if (confirm("Tem certeza que deseja excluir esta tarefa?")) {
     db.transaction(tx => {
@@ -80,6 +88,7 @@ function excluirTarefa(id) {
   }
 }
 
+// Função para limpar o formulário
 function resetarFormulario() {
   document.getElementById('titulo').value = '';
   document.getElementById('descricao').value = '';

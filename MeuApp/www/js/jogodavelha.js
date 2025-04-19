@@ -9,12 +9,18 @@ const statusText = document.getElementById("status");
 const restartButton = document.getElementById("restart");
 const difficultySelect = document.getElementById("difficulty");
 const gameModeSelect = document.getElementById("gameMode");
+const backButton = document.getElementById("backButton"); // Referência ao botão de voltar
 
 window.onload = function() {
     mode = gameModeSelect.value;
     updateDifficultyState();
     createBoard();
 };
+
+// Função para voltar ao index.html quando o botão for clicado
+backButton.addEventListener("click", function() {
+    window.location.href = "index.html"; // Redireciona para o index.html
+});
 
 function updateDifficultyState() {
     difficultySelect.disabled = mode !== "bot";
@@ -169,6 +175,27 @@ function checkMove(index, player) {
 function restartGame() {
     createBoard();
 }
+
+const themeToggle = document.getElementById("themeToggle");
+
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    
+    // Atualiza o ícone do botão conforme o tema
+    if (document.body.classList.contains("dark-mode")) {
+        themeToggle.textContent = "☀️";
+    } else {
+        themeToggle.textContent = "🌙";
+    }
+});
+
+// Caso queira que o tema se ajuste automaticamente ao sistema na primeira carga
+window.addEventListener("DOMContentLoaded", () => {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add("dark-mode");
+        themeToggle.textContent = "☀️";
+    }
+});
 
 restartButton.addEventListener("click", restartGame);
 gameModeSelect.addEventListener("change", () => {
