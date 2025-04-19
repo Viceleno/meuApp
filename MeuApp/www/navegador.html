@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navegador</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <button class="theme-toggle" id="toggle-theme">🌙</button>
+
+    <div class="navegador-container">
+        <h1>Navegador</h1>
+        
+        <div class="barra-pesquisa">
+            <input type="text" id="urlInput" placeholder="Digite a URL (ex: google.com)">
+            <div class="botoes">
+                <button onclick="abrirSite()">Ir</button>
+                <button onclick="voltar()">Voltar</button>
+            </div>
+        </div>
+
+        <iframe id="webFrame" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+    </div>
+
+    <script src="js/navegador.js"></script>
+    <script>
+        const toggleButton = document.getElementById("toggle-theme");
+        toggleButton.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            toggleButton.textContent = document.body.classList.contains("dark-mode") ? "🌞" : "🌙";
+        });
+    </script>
+</body>
+</html>
