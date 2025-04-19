@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="css/jogodavelha.css">
+</head>
+<body>
+
+    <!-- Contêiner para os botões de tema e voltar -->
+    <div class="top-buttons">
+        <button id="themeToggle">🌙</button>
+        <button id="backButton">VOLTAR</button>
+    </div>
+
+    <div class="app">
+        <h2>Jogo da Velha</h2>
+
+        <div class="select-container">
+            <label for="gameMode">Modo:</label>
+            <select id="gameMode">
+                <option value="player">2 Jogadores</option>
+                <option value="bot">Contra Bot</option>
+            </select>
+
+            <label for="difficulty">Dificuldade:</label>
+            <select id="difficulty">
+                <option value="1">Fácil</option>
+                <option value="2">Médio</option>
+                <option value="3">Difícil</option>
+            </select>
+        </div>
+
+        <div id="board"></div>
+
+        <div id="status"></div>
+        <button id="restart">Reiniciar</button>
+    </div>
+
+    <script src="cordova.js"></script>
+    <script src="js/jogodavelha.js"></script>
+</body>
+</html>

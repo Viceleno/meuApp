@@ -1,0 +1,291 @@
+/* Reset e estrutura geral */
+body {
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    background-color: #ffffff;
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;  /* Centraliza o conteúdo verticalmente */
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    overflow: hidden;
+}
+
+/* Contêiner para os botões de tema e voltar */
+.top-buttons {
+    display: flex;
+    justify-content: center; /* Centraliza os botões horizontalmente */
+    align-items: center; /* Centraliza os botões verticalmente */
+    gap: 10px; /* Espaçamento entre os botões */
+    position: absolute;
+    top: 10%; /* Ajusta a posição dos botões para o topo da tela */
+    transform: translateY(-50%); /* Ajusta para ficar no meio da tela */
+    width: 100%;
+    z-index: 10;
+}
+
+/* Botões de alternância de tema e voltar */
+#themeToggle,
+#backButton {
+    background-color: #ff6600;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#themeToggle:hover,
+#backButton:hover {
+    background-color: #e65c00;
+}
+
+/* Estrutura principal */
+.app {
+    background-color: #f9f9f9;
+    border-radius: 17px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px 20px;
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+}
+
+/* Título */
+h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Container de seleção de dificuldade */
+.select-container {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+select {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 2px solid #ff6600;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+select:hover {
+    border-color: #e65c00;
+}
+
+/* Tabuleiro */
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #ff6600;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 320px; /* Garantindo que o tabuleiro não ultrapasse a largura do contêiner */
+    margin-top: 20px;
+}
+
+/* Células do jogo */
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #f9f9f9;
+    border: 2px solid #ff6600;
+    border-radius: 10px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+.cell:hover {
+    background-color: #ffe6d5;
+}
+
+/* Botões padrão em laranja */
+button {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e65c00;
+}
+
+button.clear {
+    background-color: #d9534f;
+}
+
+button.clear:hover {
+    background-color: #c9302c;
+}
+
+#restart {
+    background: #ff6600;
+}
+
+#restart:hover {
+    background: #e65c00;
+}
+
+/* Tema escuro */
+body.dark-mode {
+    background-image: linear-gradient(to bottom, #2c2c2c, #121212);
+    color: #fff;
+}
+
+body.dark-mode .app {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode #board {
+    background-color: #ff6600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .cell {
+    background-color: #1e1e1e;
+    border-color: #ff6600;
+    color: #fff;
+}
+
+body.dark-mode .cell:hover {
+    background-color: #333;
+}
+
+body.dark-mode select {
+    background-color: #222;
+    color: #fff;
+    border-color: #ff6600;
+}
+
+body.dark-mode select:hover {
+    border-color: #e65c00;
+}
+
+body.dark-mode button,
+body.dark-mode .theme-toggle,
+body.dark-mode #backButton {
+    background-color: #ff6600;
+    color: #fff;
+}
+
+body.dark-mode button:hover,
+body.dark-mode .theme-toggle:hover,
+body.dark-mode #backButton:hover {
+    background-color: #e65c00;
+}
+
+body.dark-mode button.clear {
+    background-color: #a94442;
+}
+
+body.dark-mode button.clear:hover {
+    background-color: #922d2d;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    /* Centraliza o tabuleiro na tela */
+    .app {
+        padding: 20px 10px;
+        max-width: 90%;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    /* Reduz o tamanho das células no tabuleiro */
+    #board {
+        grid-template-columns: repeat(3, 80px);
+        gap: 8px;
+    }
+
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 28px;
+    }
+
+    /* Ajusta a largura do contêiner para dispositivos móveis */
+    .select-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    select {
+        margin-bottom: 10px;
+    }
+}
+
+/* Responsividade para telas muito pequenas (ex. celulares) */
+@media (max-width: 500px) {
+    /* Ajustes finos para telas menores */
+    .app {
+        padding: 15px;
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    /* Aumenta a área clicável do tabuleiro */
+    #board {
+        grid-template-columns: repeat(3, 70px);
+        gap: 5px;
+    }
+
+    .cell {
+        width: 70px;
+        height: 70px;
+        font-size: 24px;
+    }
+
+    .top-buttons {
+        flex-direction: column;
+        top: 10%;
+    }
+}
