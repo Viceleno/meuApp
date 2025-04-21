@@ -14,7 +14,6 @@ function iniciarApp() {
 
   db.transaction(tx => {
     tx.executeSql('CREATE TABLE IF NOT EXISTS tarefas (id INTEGER PRIMARY KEY AUTOINCREMENT, titulo TEXT, descricao TEXT)');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS settings (id INTEGER PRIMARY KEY, theme TEXT)');
   }, erro => {
     console.error("Erro ao criar tabela:", erro);
   }, listarTarefas);
