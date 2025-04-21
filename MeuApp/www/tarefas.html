@@ -1,34 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1, width=device-width">
-  <title>Gerenciador de Tarefas</title>
-  <link rel="stylesheet" href="css/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tarefas</title>
+    <link rel="stylesheet" href="css/tarefas.css">
 </head>
 <body>
-  <div class="app">
-    <h2>Cadastro de Tarefas</h2>
-    
-    <input id="titulo" placeholder="Título da Tarefa"><br>
-    <textarea id="descricao" placeholder="Descrição"></textarea><br>
-    <button onclick="salvarTarefa()">Salvar</button>
 
-    <h3>Tarefas Salvas</h3>
-        <table border="1" width="100%">
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Descrição</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="listaTarefas"></tbody>
-        </table>
+<div class="top-buttons">
+  <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+    <button id="backButton" onclick="window.history.back()">Voltar</button>
+</div>
 
-  </div>
+<div class="app">
+    <h2>Lista de Tarefas</h2>
+    <input type="text" id="titulo" placeholder="Título da Tarefa">
+    <textarea id="descricao" placeholder="Descrição"></textarea>
+    <button id="salvarBtn" onclick="salvarTarefa()">Salvar Tarefa</button>
 
-  <script src="cordova.js"></script>
-  <script src="js/tarefas.js"></script>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="listaTarefas"></tbody>
+    </table>
+</div>
+
+<script src="app.js"></script>
+
 </body>
 </html>

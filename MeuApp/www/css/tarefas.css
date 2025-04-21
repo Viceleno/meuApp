@@ -1,0 +1,239 @@
+/* Definindo o layout da aplicação */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F4F4F9;
+    color: #333;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+/* Contêiner para os botões de tema e voltar */
+.top-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+/* Botões de alternância de tema e voltar */
+#themeToggle,
+#backButton {
+    background-color: #ff6600;
+    border: none;
+    color: #fff;
+    font-size: 0.875rem;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+#themeToggle:hover,
+#backButton:hover {
+    background-color: #e65c00;
+}
+
+/* Estilo para a área principal da app */
+.app {
+    max-width: 800px;
+    margin: 100px auto 0;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título principal */
+h2 {
+    text-align: center;
+    font-size: 1.625rem;
+    color: #e65c00;
+    font-weight: bold;
+}
+
+/* Estilo para o formulário de entrada */
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #F9F9F9;
+}
+
+input:focus, textarea:focus {
+    border-color: #e65c00;
+    outline: none;
+}
+
+/* Estilo para o botão de salvar */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #e65c00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #cc4c00;
+}
+
+/* Estilo para a tabela de tarefas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #e65c00;
+    color: white;
+}
+
+table td {
+    background-color: #F9F9F9;
+}
+
+/* Estilo para as ações (botões editar e excluir) */
+.botoes-container {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-editar {
+    background-color: #e65c00;
+    color: white;
+    border: none;
+}
+
+.btn-editar:hover {
+    background-color: #cc4c00;
+}
+
+.btn-excluir {
+    background-color: #e65c00;
+    color: white;
+    border: none;
+}
+
+.btn-excluir:hover {
+    background-color: #cc4c00;
+}
+
+/* Estilos para o tema claro */
+body.light {
+    background-color: #F4F4F9;
+    color: #333;
+}
+
+body.light table {
+    background-color: #FFFFFF;
+}
+
+/* Estilos para o tema escuro */
+body.dark {
+    background-color: #121212;
+    color: #FFFFFF;
+}
+
+body.dark table {
+    background-color: #333;
+    color: #FFFFFF;
+}
+/* Responsividade para telas pequenas */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    /* Centraliza o tabuleiro na tela */
+    .app {
+        padding: 20px 10px;
+        max-width: 90%;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    /* Reduz o tamanho das células no tabuleiro */
+    #board {
+        grid-template-columns: repeat(3, 80px);
+        gap: 8px;
+    }
+
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 28px;
+    }
+
+    /* Ajusta a largura do contêiner para dispositivos móveis */
+    .select-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    select {
+        margin-bottom: 10px;
+    }
+}
+
+/* Responsividade para telas muito pequenas (ex. celulares) */
+@media (max-width: 500px) {
+    /* Ajustes finos para telas menores */
+    .app {
+        padding: 15px;
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    /* Aumenta a área clicável do tabuleiro */
+    #board {
+        grid-template-columns: repeat(3, 70px);
+        gap: 5px;
+    }
+
+    .cell {
+        width: 70px;
+        height: 70px;
+        font-size: 24px;
+    }
+
+    .top-buttons {
+        flex-direction: column;
+        top: 10%;
+    }
+}
