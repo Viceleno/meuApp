@@ -1,4 +1,3 @@
-let db;
 let editandoId = null;
 
 document.addEventListener('deviceready', iniciarApp);  // Para dispositivos móveis
