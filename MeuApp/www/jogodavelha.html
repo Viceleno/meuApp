@@ -1,30 +1,40 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br"> <!-- Define o idioma do site como português brasileiro -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Velha</title>
-    <link rel="stylesheet" href="css/jogodavelha.css">
+    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres para a página, evitando erros com acentos -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura o layout para ser responsivo em celulares -->
+    <title>Jogo da Velha</title> <!-- Título que aparece na aba do navegador -->
+    <link rel="stylesheet" href="css/jogodavelha.css"> <!-- Importa o arquivo de estilos CSS externo -->
 </head>
 <body>
 
-    <!-- Contêiner para os botões de tema e voltar -->
+    <!-- Contêiner que agrupa os botões superiores (tema e voltar) -->
     <div class="top-buttons">
+        <!-- Botão para alternar entre modo claro e escuro (ícone de lua/sol) -->
         <button id="themeToggle">🌙</button>
+
+        <!-- Botão que ao ser clicado, volta para a página anterior -->
         <button id="backButton">VOLTAR</button>
     </div>
 
+    <!-- Contêiner principal do aplicativo -->
     <div class="app">
+        <!-- Título do jogo que aparece na tela -->
         <h2>Jogo da Velha</h2>
 
+        <!-- Área de seleção para escolher o modo de jogo e a dificuldade -->
         <div class="select-container">
+            <!-- Rótulo do seletor de modo de jogo -->
             <label for="gameMode">Modo:</label>
+            <!-- Menu suspenso onde o usuário escolhe entre jogar contra outro jogador ou contra o bot -->
             <select id="gameMode">
                 <option value="player">2 Jogadores</option>
                 <option value="bot">Contra Bot</option>
             </select>
 
+            <!-- Rótulo do seletor de dificuldade -->
             <label for="difficulty">Dificuldade:</label>
+            <!-- Menu suspenso para definir o nível de dificuldade quando jogar contra o bot -->
             <select id="difficulty">
                 <option value="1">Fácil</option>
                 <option value="2">Médio</option>
@@ -32,13 +42,20 @@
             </select>
         </div>
 
+        <!-- Div onde o tabuleiro será montado dinamicamente pelo JavaScript -->
         <div id="board"></div>
 
+        <!-- Área de texto que mostra o status do jogo (ex: vez do jogador, quem venceu, empate) -->
         <div id="status"></div>
+
+        <!-- Botão que reinicia o jogo, limpando o tabuleiro -->
         <button id="restart">Reiniciar</button>
     </div>
 
+    <!-- Importa o cordova.js, usado para transformar a página em aplicativo híbrido, se necessário -->
     <script src="cordova.js"></script>
+
+    <!-- Importa o script JavaScript onde está a lógica do jogo da velha -->
     <script src="js/jogodavelha.js"></script>
 </body>
 </html>

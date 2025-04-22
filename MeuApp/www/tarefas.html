@@ -1,38 +1,53 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br"> <!-- Define que o documento está em português brasileiro -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciador de Tarefas</title>
-    <link rel="stylesheet" href="css/tarefas.css">
+    <meta charset="UTF-8"> <!-- Define o padrão de caracteres para evitar erros com acentuação -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Faz a página ficar responsiva em celulares -->
+    <title>Gerenciador de Tarefas</title> <!-- Título da aba do navegador -->
+    <link rel="stylesheet" href="css/tarefas.css"> <!-- Importa o arquivo de estilos CSS externo -->
 </head>
 <body>
 
+ <!-- Área dos botões superiores -->
  <div class="top-buttons">
+    <!-- Botão de alternar o tema (modo claro/escuro) -->
     <button id="toggle-theme" class="theme-toggle">🌙</button>
+    
+    <!-- Botão para voltar à página anterior usando o histórico do navegador -->
     <button id="backButton" onclick="window.history.back()">Voltar</button>
  </div>
 
+ <!-- Div principal que engloba o aplicativo -->
  <div class="app">
+    <!-- Título da página -->
     <h2>Lista de Tarefas</h2>
+    
+    <!-- Campo de texto para o usuário digitar o título da tarefa -->
     <input type="text" id="titulo" placeholder="Título da Tarefa">
+    
+    <!-- Campo de texto maior para o usuário digitar a descrição da tarefa -->
     <textarea id="descricao" placeholder="Descrição"></textarea>
+    
+    <!-- Botão que chama a função salvarTarefa() quando clicado -->
     <button id="salvarBtn" onclick="salvarTarefa()">Salvar Tarefa</button>
 
-
+    <!-- Tabela onde as tarefas serão listadas -->
     <table>
-        <thead>
+        <thead> <!-- Cabeçalho da tabela -->
             <tr>
-                <th>Título</th>
-                <th>Descrição</th>
-                <th>Ações</th>
+                <th>Título</th>       <!-- Coluna para o título da tarefa -->
+                <th>Descrição</th>    <!-- Coluna para a descrição da tarefa -->
+                <th>Ações</th>        <!-- Coluna para botões de ações, como editar ou excluir -->
             </tr>
         </thead>
-        <tbody id="listaTarefas"></tbody>
+        <tbody id="listaTarefas"></tbody> <!-- Corpo da tabela onde as tarefas serão inseridas dinamicamente via JavaScript -->
     </table>
  </div>
 
+  <!-- Importa o arquivo cordova.js (usado se for um app híbrido, exemplo: Apache Cordova) -->
   <script src="cordova.js"></script>
+
+  <!-- Importa o arquivo JavaScript que contém a lógica para adicionar, listar, editar e excluir tarefas -->
   <script src="js/tarefas.js"></script>
 
 </body>
