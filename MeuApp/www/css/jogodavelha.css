@@ -1,85 +1,100 @@
-/* Reset e estrutura geral */
+/* Reset e estrutura geral do body */
 body {
+    /* Impede seleção de texto em dispositivos móveis */
     -webkit-touch-callout: none;
     -webkit-text-size-adjust: none;
     -webkit-user-select: none;
+
+    /* Cor de fundo e cor da fonte padrão */
     background-color: #ffffff;
     color: #333;
+    
+    /* Fonte geral da página */
     font-family: Arial, sans-serif;
     font-size: 14px;
+
+    /* Garante que o body ocupe 100% da altura da tela */
     height: 100vh;
     margin: 0;
+
+    /* Centraliza o conteúdo */
     display: flex;
     justify-content: center;
-    align-items: center;  /* Centraliza o conteúdo verticalmente */
-    flex-direction: column; /* Empilha os elementos verticalmente */
+    align-items: center;
+    flex-direction: column;
+
+    /* Remove barras de rolagem */
     overflow: hidden;
 }
 
 /* Contêiner para os botões de tema e voltar */
 .top-buttons {
     display: flex;
-    justify-content: center; /* Centraliza os botões horizontalmente */
-    align-items: center; /* Centraliza os botões verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
     gap: 10px; /* Espaçamento entre os botões */
+    
+    /* Posicionamento fixo próximo ao topo da tela */
     position: absolute;
-    top: 10%; /* Ajusta a posição dos botões para o topo da tela */
-    transform: translateY(-50%); /* Ajusta para ficar no meio da tela */
+    top: 10%;
+    transform: translateY(-50%);
     width: 100%;
-    z-index: 10;
+    z-index: 10; /* Garante que fique acima de outros elementos */
 }
 
-/* Botões de alternância de tema e voltar */
+/* Estilo para botões de tema e voltar */
 #themeToggle,
 #backButton {
-    background-color: #ff6600;
+    background-color: #ff6600; /* Laranja */
     border: none;
     color: #fff;
     font-size: 16px;
     padding: 10px 14px;
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease; /* Efeito suave ao passar o mouse */
 }
 
 #themeToggle:hover,
 #backButton:hover {
-    background-color: #e65c00;
+    background-color: #e65c00; /* Laranja escuro no hover */
 }
 
-/* Estrutura principal */
+/* Estilo da estrutura principal do app */
 .app {
     background-color: #f9f9f9;
     border-radius: 17px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra leve */
     padding: 30px 20px;
     width: 100%;
-    max-width: 380px;
+    max-width: 380px; /* Limite de largura */
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 5;
 }
 
-/* Título */
+/* Título principal */
 h2 {
     font-size: 28px;
     margin-bottom: 15px;
     text-align: center;
 }
 
-/* Container de seleção de dificuldade */
+/* Contêiner de seleção de dificuldade e modo de jogo */
 .select-container {
     margin-bottom: 15px;
     width: 100%;
 }
 
+/* Estilização dos rótulos */
 label {
     font-size: 16px;
     font-weight: bold;
     margin-right: 5px;
 }
 
+/* Estilização dos menus suspensos */
 select {
     padding: 8px;
     font-size: 14px;
@@ -92,26 +107,26 @@ select {
 }
 
 select:hover {
-    border-color: #e65c00;
+    border-color: #e65c00; /* Cor da borda no hover */
 }
 
-/* Tabuleiro */
+/* Estilização do tabuleiro de jogo */
 #board {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+    gap: 10px; /* Espaço entre as células */
     justify-content: center;
     margin: 0 auto;
     padding: 10px;
-    background-color: #ff6600;
+    background-color: #ff6600; /* Cor de fundo do tabuleiro */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 320px; /* Garantindo que o tabuleiro não ultrapasse a largura do contêiner */
+    max-width: 320px; /* Limita largura do tabuleiro */
     margin-top: 20px;
 }
 
-/* Células do jogo */
+/* Estilo das células do jogo */
 .cell {
     width: 100px;
     height: 100px;
@@ -129,10 +144,10 @@ select:hover {
 }
 
 .cell:hover {
-    background-color: #ffe6d5;
+    background-color: #ffe6d5; /* Cor ao passar o mouse */
 }
 
-/* Botões padrão em laranja */
+/* Estilo padrão para botões */
 button {
     background-color: #ff6600;
     color: #fff;
@@ -145,9 +160,10 @@ button {
 }
 
 button:hover {
-    background-color: #e65c00;
+    background-color: #e65c00; /* Laranja escuro ao passar o mouse */
 }
 
+/* Botão de limpar (estilo de botão de perigo) */
 button.clear {
     background-color: #d9534f;
 }
@@ -156,6 +172,7 @@ button.clear:hover {
     background-color: #c9302c;
 }
 
+/* Estilo específico para o botão de reiniciar */
 #restart {
     background: #ff6600;
 }
@@ -164,9 +181,9 @@ button.clear:hover {
     background: #e65c00;
 }
 
-/* Tema escuro */
+/* Tema escuro: estilizações alternativas */
 body.dark-mode {
-    background-image: linear-gradient(to bottom, #2c2c2c, #121212);
+    background-image: linear-gradient(to bottom, #2c2c2c, #121212); /* Gradiente escuro */
     color: #fff;
 }
 
@@ -199,6 +216,7 @@ body.dark-mode select:hover {
     border-color: #e65c00;
 }
 
+/* Botões no modo escuro */
 body.dark-mode button,
 body.dark-mode .theme-toggle,
 body.dark-mode #backButton {
@@ -212,6 +230,7 @@ body.dark-mode #backButton:hover {
     background-color: #e65c00;
 }
 
+/* Botão de limpar em modo escuro */
 body.dark-mode button.clear {
     background-color: #a94442;
 }
@@ -220,13 +239,12 @@ body.dark-mode button.clear:hover {
     background-color: #922d2d;
 }
 
-/* Responsividade para telas pequenas */
+/* Responsividade: telas médias (ex: tablets) */
 @media (max-width: 768px) {
     body {
-        flex-direction: column;
+        flex-direction: column; /* Empilha elementos verticalmente */
     }
 
-    /* Centraliza o tabuleiro na tela */
     .app {
         padding: 20px 10px;
         max-width: 90%;
@@ -236,9 +254,8 @@ body.dark-mode button.clear:hover {
         font-size: 24px;
     }
 
-    /* Reduz o tamanho das células no tabuleiro */
     #board {
-        grid-template-columns: repeat(3, 80px);
+        grid-template-columns: repeat(3, 80px); /* Tabuleiro menor */
         gap: 8px;
     }
 
@@ -248,7 +265,6 @@ body.dark-mode button.clear:hover {
         font-size: 28px;
     }
 
-    /* Ajusta a largura do contêiner para dispositivos móveis */
     .select-container {
         display: flex;
         flex-direction: column;
@@ -260,9 +276,8 @@ body.dark-mode button.clear:hover {
     }
 }
 
-/* Responsividade para telas muito pequenas (ex. celulares) */
+/* Responsividade: telas muito pequenas (celulares) */
 @media (max-width: 500px) {
-    /* Ajustes finos para telas menores */
     .app {
         padding: 15px;
         width: 100%;
@@ -272,9 +287,8 @@ body.dark-mode button.clear:hover {
         font-size: 20px;
     }
 
-    /* Aumenta a área clicável do tabuleiro */
     #board {
-        grid-template-columns: repeat(3, 70px);
+        grid-template-columns: repeat(3, 70px); /* Reduz tamanho das células */
         gap: 5px;
     }
 
@@ -285,7 +299,7 @@ body.dark-mode button.clear:hover {
     }
 
     .top-buttons {
-        flex-direction: column;
+        flex-direction: column; /* Botões empilhados no topo */
         top: 10%;
     }
 }
