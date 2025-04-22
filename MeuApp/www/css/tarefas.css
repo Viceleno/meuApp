@@ -168,6 +168,51 @@ body.dark table {
     background-color: #333;
     color: #FFFFFF;
 }
+
+* Botão de alternância de tema */
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* Tema escuro ativado manualmente */
+body.dark-mode {
+    background-image: linear-gradient(to bottom, #2c2c2c, #121212);
+    color: #fff;
+}
+
+body.dark-mode .app {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode #display {
+    background-color: #121212;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+body.dark-mode button {
+    background-color: #444;
+    color: #fff;
+}
+
+body.dark-mode button:hover {
+    background-color: #555;
+}
+
+body.dark-mode button.clear {
+    background-color: #a94442;
+}
+
+body.dark-mode button.clear:hover {
+    background-color: #922d2d;
+}
+
 /* Responsividade para telas pequenas */
 @media (max-width: 768px) {
     body {
