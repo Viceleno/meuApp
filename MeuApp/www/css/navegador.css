@@ -1,4 +1,4 @@
-/* Estilo base */
+/* Estilos gerais do corpo da página */
 body {
     -webkit-touch-callout: none;
     -webkit-text-size-adjust: none;
@@ -10,12 +10,12 @@ body {
     height: 100vh;
     margin: 0;
     padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px)
-      env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+             env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
     display: flex;
     flex-direction: column;
 }
 
-/* Botão de tema */
+/* Botão que alterna entre claro/escuro */
 .theme-toggle {
     background: none;
     border: none;
@@ -27,7 +27,7 @@ body {
     z-index: 10;
 }
 
-/* Container do navegador */
+/* Container principal do navegador */
 .navegador-container {
     display: flex;
     flex-direction: column;
@@ -37,13 +37,14 @@ body {
     box-sizing: border-box;
 }
 
+/* Título centralizado */
 .navegador-container h1 {
     text-align: center;
     margin-bottom: 10px;
     font-size: 24px;
 }
 
-/* Barra de pesquisa */
+/* Estiliza a barra de pesquisa e os botões */
 .barra-pesquisa {
     display: flex;
     flex-direction: column;
@@ -51,6 +52,7 @@ body {
     margin-bottom: 10px;
 }
 
+/* Input da URL */
 .barra-pesquisa input {
     padding: 10px;
     font-size: 16px;
@@ -60,6 +62,7 @@ body {
     width: 100%;
 }
 
+/* Estilo dos botões "Ir" e "Voltar" */
 .botoes {
     display: flex;
     gap: 10px;
@@ -67,7 +70,7 @@ body {
 }
 
 .botoes button {
-    background-color: #ff6600;
+    background-color: #ff6600; /* Cor laranja fixa */
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -78,11 +81,12 @@ body {
     transition: background-color 0.3s ease;
 }
 
+/* Hover dos botões */
 .botoes button:hover {
     background-color: #e65c00;
 }
 
-/* Iframe que ocupa o espaço todo */
+/* Iframe ocupa o restante da tela */
 iframe#webFrame {
     flex-grow: 1;
     width: 100%;
@@ -92,7 +96,7 @@ iframe#webFrame {
     min-height: 400px;
 }
 
-/* Tema escuro */
+/* Estilo para o modo escuro */
 body.dark-mode {
     background-image: linear-gradient(to bottom, #2c2c2c, #121212);
     color: #fff;
@@ -107,12 +111,3 @@ body.dark-mode .barra-pesquisa input {
     color: #fff;
     border: 1px solid #444;
 }
-
-/* body.dark-mode .botoes button {
-    background-color: #444;
-    color: #fff;
-}
-
-body.dark-mode .botoes button:hover {
-    background-color: #555;
-} */

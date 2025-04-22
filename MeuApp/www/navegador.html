@@ -4,30 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navegador</title>
+    
+    <!-- Importa o arquivo de estilos -->
     <link rel="stylesheet" href="css/navegador.css">
 </head>
 <body>
+    <!-- Botão que alterna entre tema claro e escuro -->
     <button class="theme-toggle" id="toggle-theme">🌙</button>
 
     <div class="navegador-container">
         <h1>Navegador</h1>
-        
+
+        <!-- Área onde o usuário digita a URL e interage -->
         <div class="barra-pesquisa">
+            <!-- Campo de entrada da URL -->
             <input type="text" id="urlInput" placeholder="Digite a URL (ex: google.com)">
             <div class="botoes">
+                <!-- Botão para abrir o site digitado -->
                 <button onclick="abrirSite()">Ir</button>
+                <!-- Botão para voltar à tela anterior -->
                 <button onclick="voltar()">Voltar</button>
             </div>
         </div>
 
+        <!-- Iframe que carrega o site digitado pelo usuário -->
         <iframe id="webFrame" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
     </div>
 
+    <!-- Importa o JavaScript -->
     <script src="js/navegador.js"></script>
+
+    <!-- Script de alternância de tema -->
     <script>
         const toggleButton = document.getElementById("toggle-theme");
+
+        // Adiciona/remover a classe de tema escuro ao clicar no botão
         toggleButton.addEventListener("click", () => {
             document.body.classList.toggle("dark-mode");
+
+            // Troca o ícone do botão de acordo com o tema
             toggleButton.textContent = document.body.classList.contains("dark-mode") ? "🌞" : "🌙";
         });
     </script>
