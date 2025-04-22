@@ -103,6 +103,19 @@ function excluirTarefa(id) {
   }
 }
 
+const toggleButton = document.getElementById("toggle-theme");
+
+toggleButton.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  // Alterna o ícone (🌙 <-> 🌞)
+  if (document.body.classList.contains("dark-mode")) {
+    toggleButton.textContent = "🌞";
+  } else {
+    toggleButton.textContent = "🌙";
+  }
+});
+
 function resetarFormulario() {
   document.getElementById('titulo').value = '';
   document.getElementById('descricao').value = '';
