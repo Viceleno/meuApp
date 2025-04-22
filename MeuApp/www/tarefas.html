@@ -8,12 +8,12 @@
 </head>
 <body>
 
-<div class="top-buttons">
-  <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+ <div class="top-buttons">
+   <button id="themeToggle" onclick="toggleTheme()">🌙</button>
     <button id="backButton" onclick="window.history.back()">Voltar</button>
-</div>
+ </div>
 
-<div class="app">
+ <div class="app">
     <h2>Lista de Tarefas</h2>
     <input type="text" id="titulo" placeholder="Título da Tarefa">
     <textarea id="descricao" placeholder="Descrição"></textarea>
@@ -30,9 +30,10 @@
         </thead>
         <tbody id="listaTarefas"></tbody>
     </table>
-</div>
+ </div>
 
-<script src="app.js"></script>
+  <script src="cordova.js"></script>
+  <script src="js/tarefas.js"></script>
 
 </body>
 </html>

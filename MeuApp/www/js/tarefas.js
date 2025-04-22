@@ -1,54 +1,23 @@
+let db;
 let editandoId = null;
 
-document.addEventListener('deviceready', iniciarApp);  // Para dispositivos móveis
-document.addEventListener('DOMContentLoaded', iniciarApp); // Para o navegador
-
-function iniciarApp() {
-  // Verifica se está rodando no celular com o plugin SQLite
+document.addEventListener('deviceready', () => {
+  // Verifica se está rodando no celular com o plugin SQLite, senão usa WebSQL (navegador).
   if (window.sqlitePlugin) {
     db = window.sqlitePlugin.openDatabase({ name: 'tarefas.db', location: 'default' });
   } else {
     db = openDatabase('tarefas.db', '1.0', 'Tarefas', 2 * 1024 * 1024);
   }
 
+  // Cria tabela se não existir
   db.transaction(tx => {
     tx.executeSql('CREATE TABLE IF NOT EXISTS tarefas (id INTEGER PRIMARY KEY AUTOINCREMENT, titulo TEXT, descricao TEXT)');
   }, erro => {
     console.error("Erro ao criar tabela:", erro);
-  }, listarTarefas);
-
-  // Aplica o tema salvo
-  db.transaction(tx => {
-    tx.executeSql('SELECT theme FROM settings WHERE id = 1', [], (tx, res) => {
-      const savedTheme = res.rows.length > 0 ? res.rows.item(0).theme : "light"; // Default para "light"
-      document.body.classList.add(savedTheme);
-      const themeToggleButton = document.getElementById('themeToggle');
-      themeToggleButton.textContent = savedTheme === "dark" ? "☀️" : "🌙";
-    });
+  }, () => {
+    listarTarefas();
   });
-
-  const themeToggleButton = document.getElementById('themeToggle');
-  if (themeToggleButton) {
-    themeToggleButton.addEventListener('click', toggleTheme);
-  }
-}
-
-function toggleTheme() {
-  const body = document.body;
-  const currentTheme = body.classList.contains("light") ? "light" : "dark";
-  const newTheme = currentTheme === "light" ? "dark" : "light";
-  body.classList.replace(currentTheme, newTheme);
-  
-  // Armazenar o novo tema no banco de dados
-  db.transaction(tx => {
-    tx.executeSql('INSERT OR REPLACE INTO settings (id, theme) VALUES (1, ?)', [newTheme]);
-  }, erro => {
-    console.error('Erro ao salvar tema:', erro);
-  });
-
-  // Atualiza o ícone do botão conforme o tema
-  document.getElementById('themeToggle').textContent = newTheme === "dark" ? "☀️" : "🌙";
-}
+});
 
 function salvarTarefa() {
   const titulo = document.getElementById('titulo').value.trim();
@@ -59,9 +28,6 @@ function salvarTarefa() {
     return;
   }
 
-  const salvarBtn = document.getElementById('salvarBtn');
-  salvarBtn.disabled = true;  // Desabilita o botão enquanto salva
-
   if (editandoId) {
     db.transaction(tx => {
       tx.executeSql(
@@ -70,12 +36,8 @@ function salvarTarefa() {
         () => {
           resetarFormulario();
           listarTarefas();
-          salvarBtn.disabled = false;  // Habilita o botão novamente
         },
-        (tx, erro) => {
-          console.error('Erro ao atualizar:', erro);
-          salvarBtn.disabled = false;
-        }
+        (tx, erro) => console.error('Erro ao atualizar:', erro)
       );
     });
   } else {
@@ -86,12 +48,8 @@ function salvarTarefa() {
         () => {
           resetarFormulario();
           listarTarefas();
-          salvarBtn.disabled = false;  // Habilita o botão novamente
         },
-        (tx, erro) => {
-          console.error('Erro ao inserir:', erro);
-          salvarBtn.disabled = false;
-        }
+        (tx, erro) => console.error('Erro ao inserir:', erro)
       );
     });
   }
