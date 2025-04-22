@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <meta charset="utf-8" />
-
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
-    <meta
-      name="viewport"
-      content="initial-scale=1, width=device-width, viewport-fit=cover"
-    />
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
     <link rel="stylesheet" href="css/index.css" />
     <title>Meu Apps</title>
+
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -56,19 +52,234 @@
       button:hover {
         background-color: #e65c00;
       }
+
+      #localizacao {
+        font-size: 0.9em;
+        margin-top: 15px;
+        color: #666;
+      }
+
+      /* Estilo para a tela do mapa */
+      #mapa-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 1000;
+        flex-direction: column;
+      }
+
+      #mapa {
+        width: 100%;
+        height: 70%;
+      }
+
+      #mapa-info {
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-top: 1px solid #ddd;
+      }
+
+      #mapa-botoes {
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+        background-color: #f0f0f0;
+      }
+
+      #mapa-botoes button {
+        width: 45%;
+      }
+
+      .coordenadas {
+        font-family: monospace;
+        margin: 5px 0;
+      }
     </style>
+    
+    <!-- Leaflet CSS para o mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   </head>
+
   <body>
     <div class="app">
       <h1>Meu Apps</h1>
-      <button onclick="window.location.href='calculadora.html'">
-        Calculadora
-      </button>
+      <button onclick="window.location.href='calculadora.html'">Calculadora</button>
       <button onclick="window.location.href='tarefas.html'">Tarefas</button>
-      <button class="btn" onclick="window.location.href='navegador.html'">Navegador</button>
-      <button class="btn" onclick="window.location.href='jogodavelha.html'">Jogo da Velha</button>
+      <button onclick="window.location.href='navegador.html'">Navegador</button>
+      <button onclick="window.location.href='jogodavelha.html'">Jogo da Velha</button>
+      <button onclick="mostrarMapa()">Mostrar Mapa</button>
+
+      <div id="localizacao">Obtendo localização...</div>
     </div>
+
+    <!-- Tela do mapa (inicialmente oculta) -->
+    <div id="mapa-container">
+      <div id="mapa"></div>
+      <div id="mapa-info">
+        <div id="mapa-localizacao">Carregando informações de localização...</div>
+        <div class="coordenadas" id="mapa-coordenadas"></div>
+      </div>
+      <div id="mapa-botoes">
+        <button onclick="fecharMapa()">Fechar</button>
+        <button onclick="centralizarMapa()">Centralizar</button>
+      </div>
+    </div>
+
     <script src="cordova.js"></script>
     <script src="js/index.js"></script>
+    <!-- Leaflet JS para o mapa -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script>
+      // Variáveis globais
+      let mapa;
+      let marcador;
+      let posicaoAtual = null;
+      let enderecoAtual = "";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const divLocalizacao = document.getElementById("localizacao");
+
+        if (!navigator.geolocation) {
+          divLocalizacao.textContent = "Geolocalização não suportada neste dispositivo.";
+          return;
+        }
+
+        obterLocalizacao();
+      });
+
+      function obterLocalizacao() {
+        const divLocalizacao = document.getElementById("localizacao");
+
+        navigator.geolocation.getCurrentPosition(
+          posicao => {
+            posicaoAtual = posicao;
+            const lat = posicao.coords.latitude.toFixed(6);
+            const lon = posicao.coords.longitude.toFixed(6);
+
+            // Atualiza as coordenadas na tela principal
+            divLocalizacao.innerHTML = `📍 Localização atual:<br>
+                                      <span class="coordenadas">Lat: ${lat}, Lon: ${lon}</span>`;
+
+            // Faz requisição para o Nominatim (OpenStreetMap)
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+              .then(response => response.json())
+              .then(dados => {
+                if (dados && dados.address) {
+                  const cidade = dados.address.city || dados.address.town || dados.address.village || "";
+                  const estado = dados.address.state || "";
+                  enderecoAtual = `${cidade}, ${estado}`;
+                  divLocalizacao.innerHTML = `📍 Você está em: ${enderecoAtual}<br>
+                                            <span class="coordenadas">Lat: ${lat}, Lon: ${lon}</span>`;
+                } else {
+                  enderecoAtual = "";
+                  divLocalizacao.innerHTML = `📍 Suas coordenadas:<br>
+                                            <span class="coordenadas">Lat: ${lat}, Lon: ${lon}</span>`;
+                }
+              })
+              .catch(erro => {
+                console.warn("Erro ao buscar cidade:", erro);
+                enderecoAtual = "";
+                divLocalizacao.innerHTML = `📍 Suas coordenadas:<br>
+                                        <span class="coordenadas">Lat: ${lat}, Lon: ${lon}</span>`;
+              });
+          },
+          erro => {
+            switch (erro.code) {
+              case erro.PERMISSION_DENIED:
+                divLocalizacao.textContent = "Permissão de localização negada.";
+                break;
+              case erro.POSITION_UNAVAILABLE:
+                divLocalizacao.textContent = "Localização indisponível.";
+                break;
+              case erro.TIMEOUT:
+                divLocalizacao.textContent = "Tempo esgotado para obter localização.";
+                break;
+              default:
+                divLocalizacao.textContent = "Erro desconhecido ao obter localização.";
+            }
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+          }
+        );
+      }
+
+      function mostrarMapa() {
+        if (!posicaoAtual) {
+          alert("Localização ainda não disponível. Aguarde...");
+          obterLocalizacao();
+          return;
+        }
+
+        const mapaContainer = document.getElementById("mapa-container");
+        mapaContainer.style.display = "flex";
+
+        // Atualiza as informações de localização
+        const lat = posicaoAtual.coords.latitude.toFixed(6);
+        const lon = posicaoAtual.coords.longitude.toFixed(6);
+        
+        document.getElementById("mapa-coordenadas").textContent = `Latitude: ${lat}, Longitude: ${lon}`;
+        document.getElementById("mapa-localizacao").textContent = enderecoAtual || "Localização aproximada não disponível";
+
+        // Inicializa o mapa se ainda não foi inicializado
+        if (!mapa) {
+          mapa = L.map('mapa').setView(
+            [posicaoAtual.coords.latitude, posicaoAtual.coords.longitude], 
+            15
+          );
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }).addTo(mapa);
+
+          // Adiciona marcador
+          marcador = L.marker([posicaoAtual.coords.latitude, posicaoAtual.coords.longitude])
+            .addTo(mapa)
+            .bindPopup(`Você está aqui!<br>Lat: ${lat}<br>Lon: ${lon}`)
+            .openPopup();
+        } else {
+          // Se o mapa já existe, apenas centraliza na nova posição
+          centralizarMapa();
+        }
+      }
+
+      function fecharMapa() {
+        document.getElementById("mapa-container").style.display = "none";
+      }
+
+      function centralizarMapa() {
+        if (mapa && posicaoAtual) {
+          const lat = posicaoAtual.coords.latitude.toFixed(6);
+          const lon = posicaoAtual.coords.longitude.toFixed(6);
+          
+          mapa.setView(
+            [posicaoAtual.coords.latitude, posicaoAtual.coords.longitude], 
+            15
+          );
+          
+          // Atualiza a posição do marcador
+          if (marcador) {
+            marcador.setLatLng([posicaoAtual.coords.latitude, posicaoAtual.coords.longitude])
+              .setPopupContent(`Você está aqui!<br>Lat: ${lat}<br>Lon: ${lon}`);
+          } else {
+            marcador = L.marker([posicaoAtual.coords.latitude, posicaoAtual.coords.longitude])
+              .addTo(mapa)
+              .bindPopup(`Você está aqui!<br>Lat: ${lat}<br>Lon: ${lon}`)
+              .openPopup();
+          }
+          
+          // Atualiza as informações exibidas
+          document.getElementById("mapa-coordenadas").textContent = `Latitude: ${lat}, Longitude: ${lon}`;
+          document.getElementById("mapa-localizacao").textContent = enderecoAtual || "Localização aproximada não disponível";
+        }
+      }
+    </script>
   </body>
 </html>
